@@ -11,7 +11,7 @@ while (handler.Connected)
 {
     try
     {
-        await using var stream = handler.GetStream();
+        var stream = handler.GetStream();
 
         var msg = "+PONG\r\n";
         var msgBytes = Encoding.UTF8.GetBytes(msg);
