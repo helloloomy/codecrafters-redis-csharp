@@ -5,12 +5,12 @@ using System.Text;
 TcpListener server = new TcpListener(IPAddress.Any, 6379);
 
 server.Start();
+var handler = await server.AcceptTcpClientAsync();
 
-while (true)
+while (handler.Connected)
 {
     try
     {
-        using var handler = await server.AcceptTcpClientAsync();
         await using var stream = handler.GetStream();
 
         var msg = "+PONG\r\n";
